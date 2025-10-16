@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://h7uxp4vtli56"]
+
+[ext_resource type="Texture2D" uid="uid://in3krv0bdt1i" path="res://assets/sprites/food/seed1.png" id="1_bklvf"]
+[ext_resource type="Script" uid="uid://dkg5nvaik3jb4" path="res://scenes/colony/food/food.gd" id="1_ynbls"]
+[ext_resource type="Texture2D" uid="uid://me0ua55e0fmm" path="res://assets/sprites/food/seed2.png" id="2_ynbls"]
+[ext_resource type="Texture2D" uid="uid://c2qvu5nnv04du" path="res://assets/sprites/food/seed3.png" id="3_3sat3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fu213"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bklvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ynbls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3sat3")
+}],
+"loop": false,
+"name": &"sprites",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahg8x"]
+size = Vector2(45, 90)
+
+[node name="Food" type="Area2D" groups=["food"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_ynbls")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fu213")
+animation = &"sprites"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ahg8x")

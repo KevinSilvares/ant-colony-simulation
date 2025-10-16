@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://clajqs02gtmbe"]
+
+[ext_resource type="Script" uid="uid://bjlnwrjtkbakl" path="res://scenes/colony/ant/ant.gd" id="1_livsq"]
+[ext_resource type="Texture2D" uid="uid://dqfpwdrgq6vgt" path="res://assets/sprites/ants/ant_spritesheet.png" id="2_s4bns"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqsvy"]
+atlas = ExtResource("2_s4bns")
+region = Rect2(0, 0, 170, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cif3c"]
+atlas = ExtResource("2_s4bns")
+region = Rect2(210, 0, 170, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvl4k"]
+atlas = ExtResource("2_s4bns")
+region = Rect2(420, 0, 170, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1q0k"]
+atlas = ExtResource("2_s4bns")
+region = Rect2(630, 0, 170, 109)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lqadw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqsvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cif3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvl4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1q0k")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppuj5"]
+radius = 49.01
+height = 156.52
+
+[node name="Ant" type="CharacterBody2D"]
+scale = Vector2(0.3, 0.3)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_livsq")
+SPEED = 100
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lqadw")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ppuj5")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_path_custom_color = Color(0.814923, 0, 0.016414415, 1)
+debug_path_custom_line_width = 3.0
